@@ -1,23 +1,13 @@
 from mpl_toolkits.mplot3d import axes3d
-
 import matplotlib.pyplot as plt
-
 import numpy as np
 
-
-
 fig = plt.figure(figsize = (6, 6))
-
 ax = fig.gca(projection='3d')
 
-
-
 # Make the grid
-
 x, y, z = np.meshgrid(np.arange(-1, 1.2, 0.4),
-
                       np.arange(-1, 1.2, 0.4),
-
                       np.arange(-1, 1.2, 0.4))
 
 
