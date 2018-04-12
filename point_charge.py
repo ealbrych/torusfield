@@ -16,6 +16,9 @@ v = y/(x**2+y**2+z**2)**(3/2)
 w = z/(x**2+y**2+z**2)**(3/2)
 
 ax.quiver(x, y, z, u, v, w, length=0.05)
+
+ax.scatter(0,0,0, s=40, c='red')
+
 ax.set_aspect('equal')
 ax.auto_scale_xyz([-1.0, 1.0], [-1.0, 1.0], [-1.0, 1.0])
 
