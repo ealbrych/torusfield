@@ -1,7 +1,6 @@
 from mpl_toolkits.mplot3d import axes3d
 import matplotlib.pyplot as plt
 import numpy as np
-from mpl_toolkits.mplot3d.art3d import Poly3DCollection, Line3DCollection
 
 fig = plt.figure(figsize = (6, 6))
 ax = fig.gca(projection='3d')
@@ -10,7 +9,7 @@ ax = fig.gca(projection='3d')
 # ----- CHARGE PARAMETERS -----
 q = 1                  # total charge
 
-radius = 1
+radius = 0.5
 
 step_size = 0.1        # size of step
 
@@ -19,7 +18,14 @@ window_size = 1        # window extends from -window_size to window_size
 
 # ----- VECTOR PARAMETERS -----
 vector_spacing = 0.4   # distance between vectors
-arrow_length = 0.05     # length scale for arrows
+arrow_length = 0.2     # length scale for arrows
+
+# draw sphere
+u, v = np.mgrid[0:2*np.pi:40j, 0:np.pi:40j]
+x = radius*np.cos(u)*np.sin(v)
+y = radius*np.sin(u)*np.sin(v)
+z = radius*np.cos(v)
+ax.plot_wireframe(x, y, z, color="r")
 
 # ----- VECTOR PLOT -----
 
@@ -59,7 +65,10 @@ w = V[2]
 
 ax.quiver(x, y, z, u, v, w, length=arrow_length)
 
+ax.set_xlim3d([-window_size, window_size])
+ax.set_ylim3d([-window_size, window_size])
+ax.set_zlim3d([-window_size, window_size])
+
 ax.set_aspect('equal')
-ax.auto_scale_xyz([-window_size, window_size], [-window_size, window_size], [-window_size, window_size])
 
 plt.show()

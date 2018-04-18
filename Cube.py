@@ -105,7 +105,10 @@ w = V[2]
 
 ax.quiver(x, y, z, u, v, w, length=arrow_length)
 
+ax.set_xlim3d([-window_size, window_size])
+ax.set_ylim3d([-window_size, window_size])
+ax.set_zlim3d([-window_size, window_size])
+
 ax.set_aspect('equal')
-ax.auto_scale_xyz([-window_size, window_size], [-window_size, window_size], [-window_size, window_size])
 
 plt.show()
