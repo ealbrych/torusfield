@@ -10,20 +10,20 @@ ax = fig.gca(projection='3d')
 # ----- CHARGE PARAMETERS -----
 q = 1                  # total charge
 
-xside = 1              # prism side lenghts
-yside = 1
-zside = 1
+xside = 0.1              # prism side lengths
+yside = 0.1
+zside = 2
 
-xstep = 10             # number of divisons for integration
-ystep = 10
-zstep = 10
+xstep = 20             # number of divisons for integration
+ystep = 20
+zstep = 20
 
 # ----- WINDOW PARAMETERS -----
 window_size = 1        # window extends from -window_size to window_size
 
 # ----- VECTOR PARAMETERS -----
 vector_spacing = 0.4   # distance between vectors
-arrow_length = 0.3     # length scale for arrows
+arrow_length = 0.2     # length scale for arrows
 
 # ----- GRAPHICS FOR CUBE -----
 def plot_cube(cube_definition):
