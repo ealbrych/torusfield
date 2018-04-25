@@ -27,7 +27,7 @@ w = q0*z/(x**2+y**2+z**2)**(3/2)
 
 ax.quiver(x, y, z, u, v, w, length=0.05)
 
-def update(val):
+def update(val):`
     q = samp.val
     ax.clear()
     ax.quiver(x, y, z, q*u, q*v, q*w, length=0.05)
