@@ -20,14 +20,14 @@ window_size = 1        # window extends from -window_size to window_size
 
 # ----- VECTOR PARAMETERS -----
 vector_spacing = 0.4   # distance between vectors
-arrow_length = 0.2     # length scale for arrows
+arrow_length = 0.1     # length scale for arrows
 
 # draw sphere
 u, v = np.mgrid[0:2*np.pi:40j, 0:np.pi:40j]
-x = radius*np.cos(u)*np.sin(v)
-y = radius*np.sin(u)*np.sin(v)
-z = radius*np.cos(v)
-ax.plot_wireframe(x, y, z, color="r")
+l = radius*np.cos(u)*np.sin(v)
+m = radius*np.sin(u)*np.sin(v)
+n = radius*np.cos(v)
+ax.plot_surface(l, m, n, color='#DA4040')
 
 # animation slider
 axcolor = 'lightgoldenrodyellow'
@@ -92,19 +92,39 @@ def update(val):
     z = k[outside]
     V = field(x, y, z, qn)
     ax.quiver(x, y, z, V[0], V[1], V[2], length=0.1)
+    ax.set_xlim3d([-window_size, window_size])
+    ax.set_ylim3d([-window_size, window_size])
+    ax.set_zlim3d([-window_size, window_size])
     ax.set_aspect('equal')  
     ax.auto_scale_xyz([-1.0, 1.0], [-1.0, 1.0], [-1.0, 1.0])
+    
+    # draw sphere
     u, v = np.mgrid[0:2*np.pi:40j, 0:np.pi:40j]
     l = rn*np.cos(u)*np.sin(v)
     m = rn*np.sin(u)*np.sin(v)
     n = rn*np.cos(v)
-    ax.plot_wireframe(l, m, n, color="r")
+    
+    hue = int(90.15 * np.sqrt(abs(qn)) + 128)
+    hue_str = str(hex(hue))[2:]
+    sat = int(128 - abs(64 * qn))
+    sat_str = str(hex(sat))[2:]
+    if sat < 16:
+        sat_str = '0' + sat_str
+    
+    if qn >= 0:
+        ax.plot_surface(l, m, n, color='#' + hue_str + sat_str + sat_str)
+    elif qn < 0:
+        ax.plot_surface(l, m, n, color='#' + sat_str + sat_str + hue_str)
 
     fig.canvas.draw_idle()
     #fig.draw()
+    
 charge.on_changed(update) 
-r.on_changed(update) 
+r.on_changed(update)
 
+ax.set_xlim3d([-window_size, window_size])
+ax.set_ylim3d([-window_size, window_size])
+ax.set_zlim3d([-window_size, window_size])
 ax.set_aspect('equal')
 
 plt.show()

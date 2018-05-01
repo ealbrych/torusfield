@@ -7,7 +7,7 @@ ax = fig.gca(projection='3d')
 
 
 # ----- CHARGE PARAMETERS -----
-q = 1                  # total charge
+q = 1.0                  # total charge
 
 a = 0.5
 b = 0.2
@@ -24,11 +24,22 @@ vector_spacing = 0.5   # distance between vectors
 arrow_length = 0.1     # length scale for arrows
 
 # draw torus
-u, v = np.mgrid[0:2*np.pi:20j, 0:2*np.pi:20j]
-x = np.cos(u) * (a + b*np.cos(v))
-y = np.sin(u) * (a + b*np.cos(v))
-z = b*np.sin(v)
-ax.plot_wireframe(x, y, z, color="r")
+u, v = np.mgrid[0:2*np.pi:40j, 0:2*np.pi:20j]
+l = np.cos(u) * (a + b*np.cos(v))
+m = np.sin(u) * (a + b*np.cos(v))
+n = b*np.sin(v)
+
+hue = int(90.15 * np.sqrt(abs(q)) + 128)
+hue_str = str(hex(hue))[2:]
+sat = int(128 - abs(64 * q))
+sat_str = str(hex(sat))[2:]
+if sat < 16:
+    sat_str = '0' + sat_str
+
+if q >= 0:
+    ax.plot_surface(l, m, n, color='#' + hue_str + sat_str + sat_str)
+elif q < 0:
+    ax.plot_surface(l, m, n, color='#' + sat_str + sat_str + hue_str)
 
 # ----- VECTOR PLOT -----
 

@@ -56,8 +56,20 @@ def plot_cube(cube_definition):
         [points[3], points[6], points[7], points[5]]
     ]
 
+    hue = int(90.15 * np.sqrt(abs(q)) + 128)
+    hue_str = str(hex(hue))[2:]
+    sat = int(128 - abs(64 * q))
+    sat_str = str(hex(sat))[2:]
+    if sat < 16:
+        sat_str = '0' + sat_str
+    
+    if q >= 0:
+        cubecolor='#' + hue_str + sat_str + sat_str
+    elif q < 0:
+        cubecolor='#' + sat_str + sat_str + hue_str
+
     faces = Poly3DCollection(edges, linewidths=1, edgecolors='k')
-    faces.set_facecolor((1,1,0,0.2))
+    faces.set_facecolor(cubecolor)
 
     ax.add_collection3d(faces)
 

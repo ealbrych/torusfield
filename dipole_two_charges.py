@@ -77,20 +77,14 @@ def update(val):
     if sat2 < 16:
         sat_str2 = '0' + sat_str2
     
-    opacity1 = int(abs(63.5 * q1n) + 128)
-    opacity2 = int(abs(63.5 * q2n) + 128)
-    
-    opacity_str1 = str(hex(opacity1))[2:]
-    opacity_str2 = str(hex(opacity2))[2:]
-    
     if q1n >= 0:
-        ax.scatter(0,0,distn/2, s=40, c='#' + hue_str1 + sat_str1 + sat_str1 + opacity_str1)
+        ax.scatter(0,0,distn/2, s=40, c='#' + hue_str1 + sat_str1 + sat_str1)
     elif q1n < 0:
-        ax.scatter(0,0,distn/2, s=40, c='#' + sat_str1 + sat_str1 + hue_str1 + opacity_str1)
+        ax.scatter(0,0,distn/2, s=40, c='#' + sat_str1 + sat_str1 + hue_str1)
     if q2n >= 0:
-        ax.scatter(0,0,-distn/2, s=40, c='#' + hue_str2 + sat_str2 + sat_str2 + opacity_str2)
+        ax.scatter(0,0,-distn/2, s=40, c='#' + hue_str2 + sat_str2 + sat_str2)
     elif q2n < 0:
-        ax.scatter(0,0,-distn/2, s=40, c='#' + sat_str2 + sat_str2 + hue_str2 + opacity_str2)
+        ax.scatter(0,0,-distn/2, s=40, c='#' + sat_str2 + sat_str2 + hue_str2)
 
     ax.set_aspect('equal')
     ax.auto_scale_xyz([-2.0, 2.0], [-2.0, 2.0], [-2.0, 2.0])
@@ -101,8 +95,8 @@ charge2.on_changed(update)
 distance.on_changed(update)
 
 
-ax.scatter(0,0,1, s=40, c='#DA4040BF')
-ax.scatter(0,0,-1, s=40, c='#4040DABF')
+ax.scatter(0,0,1, s=40, c='#DA4040')
+ax.scatter(0,0,-1, s=40, c='#4040DA')
 
 ax.set_aspect('equal')
 ax.auto_scale_xyz([-2.0, 2.0], [-2.0, 2.0], [-2.0, 2.0])
