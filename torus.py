@@ -7,7 +7,7 @@ ax = fig.gca(projection='3d')
 
 
 # ----- CHARGE PARAMETERS -----
-q = 1.0                  # total charge
+q = -1.0                  # total charge
 
 a = 0.5
 b = 0.2
